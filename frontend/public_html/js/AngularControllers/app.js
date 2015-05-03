@@ -145,6 +145,40 @@ prodAndes.directive('toolbarConsultaClientes', function(){
     };
 });
 
+prodAndes.directive('toolbarConsultaRf10', function(){
+    return{
+        restrict:'E',
+        templateUrl: 'partials/toolbar-consulta-rf10.html',
+        controller:function(){
+            this.tab=0;
+            this.selectTab=function(setTab){
+                this.tab=setTab;
+            };
+            this.isSelected=function(tabParam){
+                return this.tab===tabParam;
+            };
+        },
+        controllerAs:'toolbarConsultaRf10Ctrl'
+    };
+});
+
+prodAndes.directive('toolbarConsultaRf11', function(){
+    return{
+        restrict:'E',
+        templateUrl: 'partials/toolbar-consulta-rf11.html',
+        controller:function(){
+            this.tab=0;
+            this.selectTab=function(setTab){
+                this.tab=setTab;
+            };
+            this.isSelected=function(tabParam){
+                return this.tab===tabParam;
+            };
+        },
+        controllerAs:'toolbarConsultaRf11Ctrl'
+    };
+});
+
 prodAndes.directive('toolbarConsultaPedidos', function(){
     return{
         restrict:'E',
@@ -282,6 +316,80 @@ prodAndes.directive('toolbarConsultaSuministros', function(){
                 };
             }],
             controllerAs:'consultarClientesCtrl'
+        };
+    });
+    
+    prodAndes.directive('consultarRf10Form', function(){
+        return{
+            restrict:'E',
+            templateUrl: 'partials/consultar-rf10-form.html',
+            controller: ['$http',function($http){
+                var self = this;
+
+                self.consulta = {};
+                self.pedidos = [];
+
+                this.isFull=function(){
+                    return self.pedidos.length>0;
+                };
+
+                this.enviarConsulta=function(consultaParam){
+
+                    self.pedidos = [];
+                    self.order='';
+
+                    self.consulta = consultaParam;
+
+                    console.log('Form consulta '+JSON.stringify(self.consulta));
+                    $http.post('http://localhost:8080/backend/Servicios/consultarPedidosRFC10' , self.consulta).success(function(data){
+
+                        console.log("Consultar clientes "+JSON.stringify(data));
+                        self.pedidos=data;
+                        console.log("Consultar clientes 2"+JSON.stringify(self.pedidos));
+                        self.consulta={};
+                    });
+
+
+                };
+            }],
+            controllerAs:'consultarRf10Ctrl'
+        };
+    });
+    
+    prodAndes.directive('consultarRf11Form', function(){
+        return{
+            restrict:'E',
+            templateUrl: 'partials/consultar-rf11-form.html',
+            controller: ['$http',function($http){
+                var self = this;
+
+                self.consulta = {};
+                self.pedidos = [];
+
+                this.isFull=function(){
+                    return self.pedidos.length>0;
+                };
+
+                this.enviarConsulta=function(consultaParam){
+
+                    self.pedidos = [];
+                    self.order='';
+
+                    self.consulta = consultaParam;
+
+                    console.log('Form consulta '+JSON.stringify(self.consulta));
+                    $http.post('http://localhost:8080/backend/Servicios/consultarPedidosRFC11' , self.consulta).success(function(data){
+
+                        console.log("Consultar clientes "+JSON.stringify(data));
+                        self.pedidos=data;
+                        console.log("Consultar clientes 2"+JSON.stringify(self.pedidos));
+                        self.consulta={};
+                    });
+
+
+                };
+            }],
+            controllerAs:'consultarRf11Ctrl'
         };
     });
     
@@ -459,6 +567,29 @@ prodAndes.directive('listaClientesConsulta', function(){
 
         },
         controllerAs:'listaClientesConsulta'
+    };
+});
+
+prodAndes.directive('listaRf10Consulta', function(){
+    return{
+        restrict:'E',
+        templateUrl: 'partials/lista-rf10-consulta.html',
+        controller:function(){
+
+        },
+        controllerAs:'listaRf10Consulta'
+    };
+});
+
+
+prodAndes.directive('listaRf11Consulta', function(){
+    return{
+        restrict:'E',
+        templateUrl: 'partials/lista-rf11-consulta.html',
+        controller:function(){
+
+        },
+        controllerAs:'listaRf11Consulta'
     };
 });
 

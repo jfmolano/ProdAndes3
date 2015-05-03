@@ -89,6 +89,14 @@ and open the template in the editor.
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-if="toolbar.isSelected(16)">
             <desactivar-estacion-form desactivarEstacionForm></desactivar-estacion-form >            
         </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-if="toolbar.isSelected(17)" >
+            <toolbar-consulta-rf10></toolbar-consulta-rf10>
+            <consultar-rf10-form consultarRf10Form></consultar-rf10-form>  
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-if="toolbar.isSelected(18)" >
+            <toolbar-consulta-rf11></toolbar-consulta-rf11>
+            <consultar-rf11-form consultarRf11Form></consultar-rf11-form>  
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="js/angular.min.js"></script>
