@@ -2494,7 +2494,7 @@ public class Prodandes {
         System.out.println("Costo: " + costo);
 
         String sql = "select * from PEDIDO_PRODUCTO "
-                + "where ID = ("
+                + "where ID IN ("
                 + "select ID from ("
                 + "select * from PEDIDO_PRODUCTO "
                 + "inner join PEDIDO_USA_MATERIA_PRIMA "
@@ -2537,7 +2537,7 @@ public class Prodandes {
         System.out.println("Material: " + material);
 
         String sql = "select * from PEDIDO_PRODUCTO "
-                + "where ID = ("
+                + "where ID IN ("
                 + "select ID from ("
                 + "select * from PEDIDO_PRODUCTO "
                 + "inner join PEDIDO_USA_MATERIA_PRIMA "
